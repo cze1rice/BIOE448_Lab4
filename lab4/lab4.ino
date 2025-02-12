@@ -2,6 +2,9 @@ const int trigPin = 11;
 const int echoPin = 12;
 long duration;
 int distanceCm, distanceInch;
+const int rLED = 7;
+const int gLED = 5;
+int range = 5;
 
 void setup() {
   // put your setup code here, to run once:
@@ -27,5 +30,16 @@ void loop() {
   Serial.print(" cm/");
   Serial.print(distanceInch);
   Serial.println(" in");
+
+  // LED control
+  if (distanceInch <= range) {
+    digitalWrite(rLED, LOW);
+    digitalWrite(gLED, HIGH);
+  }
+  else {
+    digitalWrite(gLED, LOW);
+    digitalWrite(rLED, HIGH);
+  }
+  
   delay(1000);
 }
